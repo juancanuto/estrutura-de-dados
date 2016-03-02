@@ -2,48 +2,43 @@
 
 import unittest
 
-def menor(seq, tam):
+def menor(seq):
     '''
     :param seq: uma sequencia
-    :param tam: tamanho do vetor pra comparar
     :return: (menor)
-
      Retorna o menor de uma sequencia
-
     '''
-    if tam < 2:
+    if len(seq) < 2:
         return seq[0]
     else:
-        resultado = menor(seq, tam - 1)
-        if resultado < seq[tam - 1]:
+        resultado = menor(seq[:- 1])
+        if resultado < seq[- 1]:
             return resultado
         else:
-            return seq[tam - 1]
-def maior(seq, tam):
+            return seq[- 1]
+        
+def maior(seq):
     '''
     :param seq: uma sequencia
-    :param tam: usado para comparar
     :return: (maior)
-
      Retorna o maior valor da sequencia.
      
     '''
-    if tam < 2:
+    if len(seq) < 2:
         return seq[0]
     else:
-        resultado = maior(seq, tam - 1)
-        if resultado > seq[tam - 1]:
+        resultado = maior(seq[:-1])
+        if resultado > seq[- 1]:
             return resultado
         else:
-            return seq[tam - 1]
+            return seq[- 1]
+        
 def min_max(seq):
     '''
     :param seq: uma sequencia
     :return: (min, max)
-
      Verifica se o vetor esta vazio , senão estiver ele chama as 2 funções Maior
      e Menor e retorna o resultado delas.
-
      O algoritmo roda em em O(n) creio eu , é diretamente ligado ao tamanho do
      vetor.
     '''
@@ -51,7 +46,7 @@ def min_max(seq):
     if seq == []:
         return None ,None
     else:
-        return menor(seq, len(seq)), maior(seq, len(seq))
+        return (menor(seq), maior(seq))
 
 
 
@@ -68,3 +63,4 @@ class MinMaxTestes(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
