@@ -1,10 +1,12 @@
 __author__ = 'Juan'
 
 import unittest
+def vazia(self):
+        return not bool(self.tam)
 
 class PilhaVaziaErro(Exception):
     try:
-         Pilha == 0
+         self.tam == 0
     except Exception:
         print ("Lista Vazia")
 
