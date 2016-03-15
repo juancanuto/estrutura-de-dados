@@ -5,10 +5,11 @@ def vazia(self):
         return not bool(self.tam)
 
 class PilhaVaziaErro(Exception):
-    try:
-         self.tam == 0
-    except Exception:
-        print ("Vazio")
+    #try:
+         #self.tam == 0
+    #except Exception:
+        #print ("Vazio")
+        pass
 
 class Noh():
     def __init__(self, valor, esquerdo=None, direito=None):
