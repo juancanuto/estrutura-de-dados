@@ -8,7 +8,7 @@ class PilhaVaziaErro(Exception):
     try:
          self.tam == 0
     except Exception:
-        print ("Lista Vazia")
+        print ("Vazio")
 
 class Noh():
     def __init__(self, valor, esquerdo=None, direito=None):
