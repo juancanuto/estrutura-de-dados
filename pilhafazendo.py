@@ -1,8 +1,10 @@
+__author__ = 'Juan'
+
 import unittest
 
 class PilhaVaziaErro(Exception):
     try:
-         Lista == 0
+         Pilha == 0
     except Exception:
         print ("Lista Vazia")
 
@@ -27,7 +29,7 @@ class Pilha(): ##pilha
             ultimo = self.primeiro
             while ultimo.direito is not None:
                 ultimo = ultimo.direito
-            self.top = noh
+            self.topo = noh
             ultimo.direito = noh
             noh.esquerdo = ultimo
 
@@ -41,7 +43,7 @@ class Pilha(): ##pilha
 
         ultimo = self.topo
         if self.tam == 1:
-            self.top = None
+            self.topo = None
             self.primeiro = None
         else:
             penultimo = ultimo.esquerdo
@@ -54,19 +56,15 @@ class Pilha(): ##pilha
         return not bool(self.tam)
 
     def top(self):
-
         ultimo = self.topo
         return ultimo.valor
-
-
-
 
 
 class PilhaTestes(unittest.TestCase):
     def test_top_lista_vazia(self): #top
         pilha = Pilha()
         self.assertTrue(pilha.vazia())
-        self.assertRaises(PilhaVaziaErro, pilha.top) #top
+        self.assertRaises(PilhaVaziaErro, pilha.topo) #top
 
     def test_empilhar_um_elemento(self):
         pilha = Pilha()
@@ -94,3 +92,11 @@ class PilhaTestes(unittest.TestCase):
         for letra_em_ordem_reversa in reversed(letras):
             letra_desempilhada = pilha.desempilhar()
             self.assertEqual(letra_em_ordem_reversa, letra_desempilhada)
+
+if __name__ == '__main__':
+    unittest.main()
+
+       
+          
+     
+    
