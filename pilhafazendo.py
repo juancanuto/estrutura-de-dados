@@ -1,6 +1,7 @@
 __author__ = 'Juan'
 
 import unittest
+import unittest
 def vazia(self):
         return not bool(self.tam)
 
@@ -59,9 +60,10 @@ class Pilha(): ##pilha
         return not bool(self.tam)
 
     def topo(self):
-        ultimo = self.ultimo
-        return ultimo.valor
-
+        if not self.vazia():
+            ultimo = self.ultimo
+            return ultimo.valor
+        raise PilhaVaziaErro
 
 class PilhaTestes(unittest.TestCase):
     def test_topo_lista_vazia(self): #top
@@ -98,8 +100,3 @@ class PilhaTestes(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-       
-          
-     
-    
