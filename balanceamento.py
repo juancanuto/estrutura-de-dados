@@ -1,5 +1,5 @@
 import unittest
-from pilha import Pilha
+from aula4.pilha import Pilha
 '''  Analise de complexidade: O(n)'''
 
 def esta_balanceada(expressao):
