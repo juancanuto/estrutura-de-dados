@@ -21,18 +21,18 @@ class Pilha(): ##pilha
     def __init__(self):
         self.tam = 0
         self.primeiro = None
-        self.topo = None
+        self.ultimo = None
 
     def empilhar(self, valor):
         noh = Noh(valor)
         if self.tam == 0:
             self.primeiro = noh
-            self.topo = noh
+            self.ultimo = noh
         else:
             ultimo = self.primeiro
             while ultimo.direito is not None:
                 ultimo = ultimo.direito
-            self.topo = noh
+            self.ultimo = noh
             ultimo.direito = noh
             noh.esquerdo = ultimo
 
@@ -44,27 +44,27 @@ class Pilha(): ##pilha
         if self.tam == 0:
             raise PilhaVaziaErro()
 
-        ultimo = self.topo
+        ultimo = self.ultimo
         if self.tam == 1:
-            self.topo = None
+            self.ultimo = None
             self.primeiro = None
         else:
             penultimo = ultimo.esquerdo
             penultimo.direito = None
-            self.topo = penultimo
+            self.ultimo = penultimo
         self.tam -= 1
         return ultimo.valor
 
     def vazia(self):
         return not bool(self.tam)
 
-    def top(self):
-        ultimo = self.topo
+    def topo(self):
+        ultimo = self.ultimo
         return ultimo.valor
 
 
 class PilhaTestes(unittest.TestCase):
-    def test_top_lista_vazia(self): #top
+    def test_topo_lista_vazia(self): #top
         pilha = Pilha()
         self.assertTrue(pilha.vazia())
         self.assertRaises(PilhaVaziaErro, pilha.topo) #top
@@ -73,14 +73,14 @@ class PilhaTestes(unittest.TestCase):
         pilha = Pilha()
         pilha.empilhar('A')
         self.assertFalse(pilha.vazia())
-        self.assertEqual('A', pilha.top())
+        self.assertEqual('A', pilha.topo())
 
     def test_empilhar_dois_elementos(self):
         pilha = Pilha()
         pilha.empilhar('A')
         pilha.empilhar('B')
         self.assertFalse(pilha.vazia())
-        self.assertEqual('B', pilha.top())
+        self.assertEqual('B', pilha.topo())
 
     def test_desempilhar_pilha_vazia(self):
         pilha = Pilha()
