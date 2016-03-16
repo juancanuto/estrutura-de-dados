@@ -1,7 +1,7 @@
 __author__ = 'Juan'
 
 import unittest
-import unittest
+
 def vazia(self):
         return not bool(self.tam)
 
