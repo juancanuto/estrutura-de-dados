@@ -1,4 +1,4 @@
-__author__ = 'Juan'
+
 
 import unittest
 
