@@ -8,28 +8,6 @@ class ErroLexico(Exception):
 class ErroSintatico(Exception):
     pass
 
-def analise_lexica(expressao):
-    fila = Fila()
-    token = R"0123456789.-+*/{}[]()"
-    token2 = R".-+*/{}[]()"
-    if expressao:
-        num = ''
-        for lex in expressao:
-            if lex in token:
-                if lex in token2:
-                    if num:
-                        fila.enfileirar(num)
-                        num = ''
-                    fila.enfileirar(lex)
-                else:
-                    num = num + lex
-            else:
-                raise ErroLexico()
-        if num:
-            fila.enfileirar(num)
-    return fila
-
-
 def analise_sintatica(fila):
     token = R"-+/*(){}[]"
     if fila.__len__():
@@ -56,7 +34,27 @@ def analise_sintatica(fila):
     else:
         raise ErroSintatico
 
-
+def analise_lexica(expressao):
+    fila = Fila()
+    token = R"0123456789.-+*/{}[]()"
+    token2 = R".-+*/{}[]()"
+    if expressao:
+        num = ''
+        for lex in expressao:
+            if lex in token:
+                if lex in token2:
+                    if num:
+                        fila.enfileirar(num)
+                        num = ''
+                    fila.enfileirar(lex)
+                else:
+                    num = num + lex
+            else:
+                raise ErroLexico()
+        if num:
+            fila.enfileirar(num)
+    return fila
+    
 def avaliar(expressao):
     token2 = R".-+*/{}[]()"
     token3 = R"(){}[]"
