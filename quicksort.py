@@ -8,7 +8,8 @@ def quicksort(seq):
         iguais  = [x for x in seq if x == pivo]
         menores = [x for x in seq if x <  pivo]
         maiores = [x for x in seq if x >  pivo]
-        return quicksort(menores) + iguais + quicksort(maiores)
+        seq = quicksort(menores) + iguais + quicksort(maiores)
+        return seq
 
 class OrdenacaoTestes(unittest.TestCase):
     def teste_lista_vazia(self):
