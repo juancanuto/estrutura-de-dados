@@ -2,13 +2,20 @@ __author__ = 'Juan'
 
 import unittest
 
+''' O(n²)'''
 
 def insertion_sort(seq):
-    
-
-
-
-    pass
+    if len(seq) <= 1:
+        return seq
+    else:
+        for i in range(1, len(seq)):
+            s = seq[i]
+            j = i
+            while j > 0 and seq[j - 1] > s:
+                seq[j] = seq[j - 1]
+                j -= 1
+            seq[j] = s
+        return seq
 
 
 class OrdenacaoTestes(unittest.TestCase):
