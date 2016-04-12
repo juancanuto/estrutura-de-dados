@@ -3,8 +3,8 @@ import unittest
 def busca_binaria(seq, procurado):
 
     seq.sort()
-    inicio= 0
-    fim= len(seq)-1
+    inicio = 0
+    fim = len(seq)-1
 
     while inicio <= fim:
         meio = (inicio + fim)//2
