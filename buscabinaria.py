@@ -3,12 +3,12 @@ import unittest
 def busca_binaria(seq, procurado):
 
     seq.sort()
-    inicio=0
-    fim=len(seq)-1
+    inicio= 0
+    fim= len(seq)-1
 
-    while inicio<=fim:
+    while inicio <= fim:
         meio = (inicio + fim)//2
-        if procurado<seq[meio]:
+        if procurado < seq[meio]:
             fim = meio - 1
         elif procurado > seq[meio]:
             inicio = meio + 1
