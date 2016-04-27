@@ -9,7 +9,10 @@ def gerar_arvore_de_huffman(s):
 
 
 def codificar(cod_dict, s):
-    pass
+    cod = ""
+    for char in s:
+        cod += cod_dict[char]
+    return cod
 
 
 class Noh:
