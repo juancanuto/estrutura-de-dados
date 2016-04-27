@@ -1,16 +1,19 @@
+from unittest import TestCase
+
+
 def calcular_frequencias(s):
     dct = {}
     for char in s:
-        dct[char]=dct.get(char,0)+1
+        dct[char] = dct.get(char, 0) + 1
     return dct
 
-def gerar_arvore_de_huffman(s):
-    folhas = []
 
-    for folha in calcular_frequencias(s):
-        folhas.append(Folha(folha, calcular_frequencias(s)[folha]))
-    
-    folhas.sort(key = lambda folha: folha.peso)
+def gerar_arvore_de_huffman(s):
+    dct = calcular_frequencias(s)
+    folhas = []
+    for folha in dct:
+        folhas.append(Folha(folha, dct[folha]))
+    folhas.sort(key=lambda folha: folha.peso)
     folha = folhas.pop(0)
     arvore = Arvore(folha.char, folha.peso)
 
@@ -20,15 +23,20 @@ def gerar_arvore_de_huffman(s):
         arvore = arvore2.fundir(arvore)
     return arvore
 
-
 def codificar(cod_dict, s):
-    cod = ""
+    code = ""
     for char in s:
-        cod += cod_dict[char]
-    return cod
+        if char in cod_dict.keys():
+            code += cod_dict[char]
+    return code
 
 
 class Noh:
+    def __init__(self, peso, esquerdo=None, direito=None):
+        self.peso = peso
+        self.esquerdo = None
+        self.direito = None
+
     def __hash__(self):
         return hash(self.peso)
 
@@ -39,6 +47,10 @@ class Noh:
 
 
 class Folha():
+    def __init__(self, char=None, peso=None):
+        self.char = char
+        self.peso = peso
+
     def __hash__(self):
         return hash(self.__dict__)
 
@@ -49,6 +61,14 @@ class Folha():
 
 
 class Arvore(object):
+    def __init__(self, char=None, peso=None):
+        if char:
+            self.raiz = Folha(char, peso)
+        else:
+            self.raiz = None
+        self.char = char
+        self.peso = peso
+
     def __hash__(self):
         return hash(self.raiz)
 
@@ -57,8 +77,54 @@ class Arvore(object):
             return False
         return self.raiz == other.raiz
 
+    def fundir(self, arvore):
+        raiz = Noh(self.raiz.peso + arvore.raiz.peso)
+        raiz.esquerdo = self.raiz
+        raiz.direito = arvore.raiz
+        newArvore = Arvore()
+        newArvore.raiz = raiz
 
-from unittest import TestCase
+        return newArvore
+
+    def cod_dict(self):
+        dct = {}
+        code = []
+        folhas = []
+
+        folhas.append(self.raiz)
+
+        while folhas:
+            atual = folhas.pop()
+            if isinstance(atual, Folha):
+                letra = atual.char
+                dct[letra] = ''.join(code)
+                code.pop()
+                code.append('1')
+            else:
+                folhas.append(atual.direito)
+                folhas.append(atual.esquerdo)
+                code.append('0')
+
+        return dct
+
+    def decodificar(self, codigo):
+        dct = []
+        pos = self.raiz
+
+        if isinstance(pos, Folha):
+            return pos.char
+        else:
+            for i in codigo:
+                if i == '0':
+                    pos = pos.esquerdo
+                else:
+                    pos = pos.direito
+
+                if isinstance(pos, Folha):
+                    dct.append(pos.char)
+                    pos = self.raiz
+
+        return "".join(dct)
 
 
 class CalcularFrequenciaCarecteresTestes(TestCase):
