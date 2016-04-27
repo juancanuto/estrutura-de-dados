@@ -5,7 +5,20 @@ def calcular_frequencias(s):
     return dct
 
 def gerar_arvore_de_huffman(s):
-    pass
+    folhas = []
+
+    for folha in calcular_frequencias(s):
+        folhas.append(Folha(folha, calcular_frequencias(s)[folha]))
+    
+    folhas.sort(key = lambda folha: folha.peso)
+    folha = folhas.pop(0)
+    arvore = Arvore(folha.char, folha.peso)
+
+    while folhas:
+        folha = folhas.pop(0)
+        arvore2 = Arvore(folha.char, folha.peso)
+        arvore = arvore2.fundir(arvore)
+    return arvore
 
 
 def codificar(cod_dict, s):
