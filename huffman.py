@@ -1,6 +1,8 @@
 def calcular_frequencias(s):
-    pass
-
+    dct = {}
+    for char in s:
+        dct[char]=dct.get(char,0)+1
+    return dct
 
 def gerar_arvore_de_huffman(s):
     pass
