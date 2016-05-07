@@ -1,4 +1,4 @@
-__author__ = 'Juan'
+
 import unittest
 
 
@@ -45,6 +45,7 @@ class Grafo():
 
     def adjacencias(self, cidade):
         adjacente = tuple()
+
         for x in self.arco:
             if cidade in x.vertices:
                 adjacente = adjacente + (x.oposto(cidade),)
@@ -56,8 +57,10 @@ class Grafo():
         if cidade1 == cidade2:
             cidades.append(cidade1)
             return cidades
+
         elif self.arcos(cidade1) == tuple():
             return cidades
+
         else:
             atual = cidade1
             while atual is not cidade2:
@@ -69,6 +72,7 @@ class Grafo():
                         atual = i.oposto(atual)
                         break
             cidades.append(atual)
+
         return cidades
 
     def calcular_melhores_caminhos_partindo_de(self, cidade):
@@ -88,14 +92,17 @@ class Grafo():
                 if a[1].vertices[0] in visitados and a[1].vertices[1] in visitados:
                     listaArcos.remove(a)
             listaArcos.sort(key=lambda arcos: arcos[0])
+
             if listaArcos:
                 arco = listaArcos.pop(0)
+
             else:
                 return rota
 
             if arco[1].vertices[0] in visitados:
                 visitados.append(arco[1].vertices[1])
                 cidade_vizinha = arco[1].vertices[0]
+
             else:
                 visitados.append(arco[1].vertices[0])
                 cidade_vizinha = arco[1].vertices[1]
@@ -103,6 +110,7 @@ class Grafo():
             rota[visitados[-1]] = arco[0], rota[cidade_vizinha][1] + [arco[1].valor] + [visitados[-1]]
 
             tam = len(self.arco)
+
             for posicao in range(tam):
                 if visitados[-1] in self.arco[posicao].vertices and (self.arco[posicao].vertices[0] not in visitados or self.arco[posicao].vertices[1] not in visitados):
                     listaArcos.append((rota[visitados[-1]][0] + self.arco[posicao].valor, self.arco[posicao]))
