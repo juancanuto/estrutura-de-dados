@@ -1,22 +1,20 @@
 import unittest
 from itertools import product
-
 regra = {'2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wzyz'}
-
 
 def gerar_alfa(s):
     '''
-    Complexidade: O(n ao quadrado) em tempo e O(n) em memória
+    Complexidade: O(n ao quadrado) e O(n)Memoria.
     '''
-    reg = [()]
+    resl = [()]
     for key in s:
-        i = len(reg)-1
-        while i>=0:
-            aux = reg.pop(0)
+        i = len(resl)-1
+        while i >= 0:
+            aux = resl.pop(0)
             for char in regra[key]:
-                reg.append(aux+(char,))
-            i-=1
-    return reg
+                resl.append(aux+ (char,))
+            i-= 1
+    return resl
 
 
 class Testes(unittest.TestCase):
