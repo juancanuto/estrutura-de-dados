@@ -16,37 +16,7 @@ public class Agenda {
         this.idade = idade;
         this.altura = altura;	
     	    }
-    
-    public int getId() {
-        return id;
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-    
-    public float getAltura() {
-    	return altura;
-    }
-    
-    public int getIdade() {
-        return idade;
-    }
-    
-    public void setAltura(float altura) {
-    	this.altura = altura;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
- 
-	
+   
 	public void armazenaPessoas(String nome, int idade , float altura){
 		Agenda pessoa = new Agenda(nome, idade, altura);
 				pessoas.add(pessoa);
@@ -80,12 +50,4 @@ public class Agenda {
 			System.out.println(pessoas.get(index));
 		
 	}
-
-	public String tlV() {
-        String i = "(";
-        i += ", Nome: " + nome;
-        i += ", Idade: " + idade;
-        i += ", Altura: " + altura;
-        i += ")";
-        return i;
-	}}
+}
